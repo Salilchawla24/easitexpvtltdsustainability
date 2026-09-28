@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Easitex P. Ltd — The Intelligence Layer for Textiles</title>
+<meta name="description" content="Easitex P. Ltd is an AI-driven compliance intelligence platform for the textile and fashion export industry, covering sustainability, regulatory and innovation intelligence.">
+<meta name="theme-color" content="#050605">
+<link rel="canonical" href="https://www.easitex.co/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.easitex.co/">
+<meta property="og:title" content="Easitex P. Ltd — The Intelligence Layer for Textiles">
+<meta property="og:description" content="Real data, real impact. Turn regulatory complexity into action.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2230%22%20height%3D%2260%22%20fill%3D%22%23F8E78D%22%20stroke%3D%22%23111%22%20stroke-width%3D%223%22/%3E%3Crect%20x%3D%2232%22%20y%3D%222%22%20width%3D%2230%22%20height%3D%2260%22%20fill%3D%22%23fff%22%20stroke%3D%22%23111%22%20stroke-width%3D%223%22/%3E%3Ctext%20x%3D%2217%22%20y%3D%2242%22%20text-anchor%3D%22middle%22%20font-family%3D%22Arial%22%20font-weight%3D%22800%22%20font-size%3D%2226%22%20fill%3D%22%23111%22%3EE%3C/text%3E%3Ctext%20x%3D%2247%22%20y%3D%2242%22%20text-anchor%3D%22middle%22%20font-family%3D%22Arial%22%20font-weight%3D%22800%22%20font-size%3D%2226%22%20fill%3D%22%23111%22%3ET%3C/text%3E%3C/svg%3E" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050605; --bg2:#0a0c0b; --ink:#eeeee8; --muted:#8d928e; --dim:#5a605c;
+  --line:rgba(238,238,232,.12); --line2:rgba(238,238,232,.22);
+  --accent:#7fb58f; --accent-dim:rgba(127,181,143,.14);
+  --serif:"Playfair Display",Georgia,"Times New Roman",serif;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --pad:clamp(20px,6vw,96px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img,canvas{display:block}
+::selection{background:var(--accent);color:#000}
+
+.label{font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:.32em;text-transform:uppercase;color:var(--muted)}
+.label.accent{color:var(--accent)}
+.display{font-family:var(--serif);font-weight:600;text-transform:uppercase;line-height:1.02;letter-spacing:-.005em}
+.display em{font-style:italic;font-weight:500}
+.lede{color:var(--muted);font-size:clamp(15px,1.15vw,17px);max-width:34em}
+
+.btn{display:inline-flex;align-items:center;gap:14px;padding:17px 28px;border:1px solid var(--line2);font-size:11px;font-weight:400;letter-spacing:.28em;text-transform:uppercase;color:var(--ink);transition:background .3s,border-color .3s,color .3s}
+.btn:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn .arr{transition:transform .3s}
+.btn:hover .arr{transform:translateX(4px)}
+.link{display:inline-flex;align-items:center;gap:12px;padding:17px 0;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid transparent;transition:color .3s,border-color .3s}
+.link:hover{color:var(--ink);border-color:var(--line2)}
+
+/* NAV */
+header.nav{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:26px var(--pad);transition:background .4s,padding .4s,border-color .4s;border-bottom:1px solid transparent}
+header.nav.scrolled{background:rgba(5,6,5,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding-top:18px;padding-bottom:18px;border-color:var(--line)}
+.logo{font-family:var(--serif);font-size:21px;font-weight:600;letter-spacing:.01em}
+.logo i{font-weight:500}
+nav.links{display:flex;gap:44px}
+nav.links a{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--muted);transition:color .25s}
+nav.links a:hover{color:var(--ink)}
+.menu-btn{display:none;background:none;border:0;color:var(--ink);width:40px;height:40px;cursor:pointer;position:relative}
+.menu-btn span{position:absolute;left:10px;right:10px;height:1px;background:currentColor;transition:transform .3s,top .3s}
+.menu-btn span:nth-child(1){top:16px}.menu-btn span:nth-child(2){top:23px}
+.menu-open .menu-btn span:nth-child(1){top:20px;transform:rotate(45deg)}
+.menu-open .menu-btn span:nth-child(2){top:20px;transform:rotate(-45deg)}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:120px var(--pad) 110px;overflow:hidden}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.hero-grid{position:absolute;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:25% 33.33%;opacity:.18;mask-image:radial-gradient(ellipse at 70% 50%,#000 20%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse at 70% 50%,#000 20%,transparent 75%)}
+.hero-copy{position:relative;z-index:2;max-width:640px}
+.hero h1{font-size:clamp(46px,7.2vw,104px);margin-bottom:34px}
+.hero .tag{margin-bottom:46px;letter-spacing:.42em}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px 34px;align-items:center}
+.callouts{position:absolute;right:var(--pad);top:0;bottom:0;z-index:2;pointer-events:none}
+.callout{position:absolute;right:0;display:flex;align-items:center;gap:14px;white-space:nowrap;font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--muted);opacity:.35;transition:opacity .6s,color .6s}
+.callout::before{content:"";width:44px;height:1px;background:currentColor}
+.callout.on{opacity:1;color:var(--ink)}
+.callout.on.green{color:var(--accent)}
+.hero-foot{position:absolute;left:var(--pad);right:var(--pad);bottom:34px;z-index:2;display:flex;justify-content:space-between}
+.hero-foot .label{font-size:10px}
+.scroll-cue{display:inline-flex;gap:10px;align-items:center}
+.scroll-cue b{display:inline-block;font-weight:400;animation:bob 2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(4px)}}
+
+/* SECTIONS */
+section.block{padding:clamp(90px,13vw,170px) var(--pad);border-top:1px solid var(--line);position:relative}
+.head{display:grid;grid-template-columns:1.25fr 1fr;gap:40px 8vw;align-items:end;margin-bottom:clamp(56px,7vw,96px)}
+.head .label{margin-bottom:22px;display:block}
+.head h2{font-size:clamp(34px,4.4vw,64px)}
+.head .lede{padding-bottom:8px}
+
+.cols{display:grid;gap:0}
+.cols-3{grid-template-columns:repeat(3,1fr)}
+.cols-4{grid-template-columns:repeat(4,1fr)}
+.col{padding:34px 34px 34px 0;border-right:1px solid var(--line)}
+.col + .col{padding-left:34px}
+.col:last-child{border-right:0}
+.col .num{font-size:10px;letter-spacing:.3em;color:var(--dim);margin-bottom:16px}
+.col h3{font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:.34em;text-transform:uppercase;margin-bottom:14px}
+.col p{color:var(--muted);font-size:14.5px;max-width:22em}
+.after{margin-top:60px}
+
+/* Three moves cards */
+.moves{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.move{background:var(--bg);padding:44px 38px 48px;position:relative;overflow:hidden;transition:background .4s}
+.move:hover{background:var(--bg2)}
+.move::after{content:"";position:absolute;left:0;top:0;height:1px;width:0;background:var(--accent);transition:width .6s ease}
+.move:hover::after{width:100%}
+.move .n{font-family:var(--serif);font-style:italic;font-size:54px;color:var(--dim);line-height:1;margin-bottom:46px;transition:color .4s}
+.move:hover .n{color:var(--accent)}
+.move h3{font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:.34em;text-transform:uppercase;margin-bottom:14px}
+.move p{color:var(--muted);font-size:14.5px;margin-bottom:26px}
+.move ul{list-style:none;border-top:1px solid var(--line)}
+.move li{font-size:13px;color:var(--muted);padding:11px 0;border-bottom:1px solid var(--line);display:flex;gap:12px}
+.move li::before{content:"—";color:var(--dim)}
+
+/* Radar */
+.radar-track{position:relative}
+.radar-track .progress{position:absolute;left:0;top:0;height:1px;background:var(--accent);width:0;transition:width 1.6s cubic-bezier(.2,.7,.1,1)}
+.radar-track.in .progress{width:100%}
+.radar-track .cols{border-top:1px solid var(--line)}
+.radar-track .col p{font-style:italic;font-family:var(--serif);font-size:17px;color:var(--muted)}
+
+/* Blueprint */
+.stages{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,44px)}
+.stage{border-top:1px solid var(--line2);padding-top:30px}
+.stage .days{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:26px}
+.stage .days span:first-child{font-family:var(--serif);font-size:clamp(34px,3.4vw,48px);font-weight:500}
+.stage h3{font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:.34em;text-transform:uppercase;margin-bottom:14px}
+.stage p{color:var(--muted);font-size:14.5px;margin-bottom:22px}
+.stage ul{list-style:none}
+.stage li{font-size:13px;color:var(--muted);padding:9px 0;border-top:1px solid var(--line)}
+.bar{height:2px;background:var(--line);margin-top:26px;position:relative;overflow:hidden}
+.bar i{position:absolute;inset:0 auto 0 0;width:0;background:var(--accent);transition:width 1.4s ease}
+.in .bar i{width:var(--w)}
+
+/* Insights */
+.insights{display:grid;grid-template-columns:1fr 1fr;gap:40px 8vw}
+.feature .meta,.post .meta{display:flex;gap:14px;flex-wrap:wrap;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--dim);margin-bottom:14px}
+.feature h3{font-family:var(--serif);font-size:clamp(26px,2.6vw,36px);font-weight:600;line-height:1.18;margin-bottom:20px}
+.feature h3 a,.post h3 a{background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .4s}
+.feature h3 a:hover,.post h3 a:hover{background-size:100% 1px}
+.feature p{color:var(--muted);margin-bottom:26px;max-width:32em}
+.post{padding:24px 0;border-top:1px solid var(--line)}
+.post:first-child{border-top:0;padding-top:0}
+.post h3{font-family:var(--serif);font-weight:500;font-size:19px;line-height:1.35}
+.topics{display:flex;flex-wrap:wrap;gap:10px;margin-top:clamp(60px,7vw,90px);padding-top:34px;border-top:1px solid var(--line)}
+.topics a{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);padding:10px 16px;border:1px solid var(--line);transition:all .25s}
+.topics a:hover{color:var(--ink);border-color:var(--line2)}
+
+/* Company */
+.company{display:grid;grid-template-columns:1fr 1fr;gap:40px 8vw}
+.stats{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
+.stat{padding:30px 0;border-bottom:1px solid var(--line)}
+.stat:nth-child(odd){padding-right:24px;border-right:1px solid var(--line)}
+.stat:nth-child(even){padding-left:24px}
+.stat b{display:block;font-family:var(--serif);font-weight:500;font-size:clamp(26px,2.4vw,34px);margin-bottom:6px}
+.stat span{font-size:13px;color:var(--muted)}
+
+/* CTA */
+.cta{text-align:center;padding:clamp(110px,15vw,200px) var(--pad);border-top:1px solid var(--line);position:relative;overflow:hidden}
+.cta::before{content:"";position:absolute;left:50%;top:50%;width:70vw;height:70vw;max-width:900px;max-height:900px;transform:translate(-50%,-50%);background:radial-gradient(circle,var(--accent-dim),transparent 60%);pointer-events:none}
+.cta .label{display:block;margin-bottom:26px}
+.cta h2{font-size:clamp(36px,5.2vw,76px);margin:0 auto 46px;max-width:14em;position:relative}
+.cta .row{display:flex;justify-content:center;flex-wrap:wrap;gap:14px 36px;position:relative}
+
+/* Footer */
+footer{padding:80px var(--pad) 36px;border-top:1px solid var(--line)}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:80px}
+.foot-grid p{color:var(--muted);font-size:14px;max-width:26em;margin-top:18px}
+.foot-grid h4{font-size:10px;font-weight:400;letter-spacing:.32em;text-transform:uppercase;color:var(--dim);margin-bottom:18px}
+.foot-grid ul{list-style:none}
+.foot-grid li{margin-bottom:10px}
+.foot-grid li a{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);transition:color .25s}
+.foot-grid li a:hover{color:var(--ink)}
+.legal{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;font-size:11px;color:var(--dim);padding-top:28px;border-top:1px solid var(--line)}
+.legal p{max-width:38em;text-align:right}
+
+/* Reveal */
+.rv{opacity:0;transform:translateY(26px);transition:opacity 1s ease,transform 1s cubic-bezier(.2,.7,.1,1)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}
+
+/* Responsive */
+@media (max-width:1280px){nav.links{gap:22px} nav.links a{letter-spacing:.22em}}
+@media (max-width:980px){
+  .head,.insights,.company{grid-template-columns:1fr}
+  .cols-4{grid-template-columns:1fr 1fr}
+  .cols-4 .col:nth-child(2){border-right:0}
+  .cols-4 .col:nth-child(3){padding-left:0}
+  .cols-4 .col:nth-child(n+3){border-top:1px solid var(--line)}
+  .callouts{display:none}
+}
+@media (max-width:760px){
+  nav.links{position:fixed;inset:0;background:var(--bg);flex-direction:column;justify-content:center;align-items:center;gap:34px;opacity:0;pointer-events:none;transition:opacity .35s}
+  nav.links a{font-size:13px}
+  .menu-open nav.links{opacity:1;pointer-events:auto}
+  .menu-btn{display:block;z-index:60}
+  .logo{z-index:60;position:relative}
+  .cols-3,.moves,.stages,.foot-grid{grid-template-columns:1fr}
+  .col,.col + .col{padding:28px 0;border-right:0;border-bottom:1px solid var(--line)}
+  .cols-4{grid-template-columns:1fr}
+  .cols-4 .col{padding:24px 0!important;border-top:0!important}
+  .hero{align-items:flex-end;padding-bottom:120px}
+  .hero canvas{opacity:.55}
+  .hero-foot .page{display:none}
+  .legal p{text-align:left}
+  .stats{grid-template-columns:1fr}
+  .stat:nth-child(odd){border-right:0;padding-right:0}
+  .stat:nth-child(even){padding-left:0}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rv{opacity:1;transform:none;transition:none}
+  .scroll-cue b{animation:none}
+}
+
+/* brand */
+.logo{display:inline-flex;align-items:center;gap:12px}
+.brandmark{height:30px;width:auto}
+.logo-txt{font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--ink)}
+footer .brandmark{height:34px}
+.reach{font-size:13px;color:var(--ink);margin:0 0 12px!important;letter-spacing:.06em}
+.foot-grid li a{text-transform:none!important;letter-spacing:.04em!important;font-size:14px!important}
+/* sustainability: bottom-up green reflection */
+:root{--leaf:#9fd36b;--moss:#2f6b45;--sea:#3fa38a}
+body{background:linear-gradient(to top,#07140d 0%,var(--bg) 40%)}
+section.block,.cta{background:linear-gradient(to top,rgba(63,163,138,.10) 0%,rgba(127,181,143,.04) 30%,transparent 62%)}
+section.block::after{content:"";position:absolute;left:var(--pad);right:var(--pad);bottom:0;height:1px;background:linear-gradient(90deg,transparent,rgba(159,211,107,.45),transparent)}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:45%;background:linear-gradient(to top,rgba(47,107,69,.28),rgba(63,163,138,.08) 45%,transparent);pointer-events:none;z-index:1}
+.eco-glow{position:fixed;left:0;right:0;bottom:0;height:22vh;pointer-events:none;z-index:40;background:linear-gradient(to top,rgba(63,163,138,.16),rgba(159,211,107,.05) 50%,transparent);mix-blend-mode:screen}
+.cta::before{top:auto;bottom:-40%;transform:translateX(-50%);background:radial-gradient(circle,rgba(159,211,107,.22),rgba(63,163,138,.08) 40%,transparent 65%)}
+footer{background:linear-gradient(to top,#123a24 0%,#0b2015 35%,transparent 100%);border-top-color:rgba(159,211,107,.25)}
+.label.accent{color:var(--leaf)}
+.move::after{background:linear-gradient(90deg,var(--sea),var(--leaf))}
+.bar i{background:linear-gradient(90deg,var(--sea),var(--leaf))}
+/* backed-by band */
+.backed{position:relative;padding:clamp(56px,7vw,90px) var(--pad);border-top:1px solid var(--line);background:linear-gradient(to top,rgba(248,231,141,.07),transparent 70%)}
+.backed-inner{display:grid;grid-template-columns:auto 1fr;gap:clamp(28px,5vw,80px);align-items:center}
+.backed .yr{font-family:var(--serif);font-size:clamp(64px,9vw,132px);line-height:.9;color:#F8E78D;font-weight:600}
+.backed .yr small{display:block;font-family:var(--sans);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--muted);margin-top:14px;font-weight:400}
+.backed h2{font-family:var(--serif);font-weight:500;font-size:clamp(24px,2.6vw,38px);line-height:1.25;margin:14px 0 0}
+.backed h2 b{font-weight:700;color:#fff}
+.backed h2 em{color:#F8E78D}
+/* one-stop */
+.fit{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.fit article{background:var(--bg);padding:36px 30px 40px;background-image:linear-gradient(to top,rgba(63,163,138,.09),transparent 55%);transition:background-color .4s}
+.fit article:hover{background-color:#0b120e}
+.fit .tag{display:inline-block;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--leaf);border:1px solid rgba(159,211,107,.35);padding:6px 10px;margin-bottom:26px}
+.fit h3{font-family:var(--serif);font-weight:500;font-size:22px;margin-bottom:12px}
+.fit p{color:var(--muted);font-size:14px}
+.onestop-note{margin-top:34px;display:flex;flex-wrap:wrap;gap:10px}
+.onestop-note span{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);padding:9px 14px;border:1px solid var(--line)}
+@media (max-width:1280px){nav.links{gap:22px} nav.links a{letter-spacing:.22em}}
+@media (max-width:980px){.fit{grid-template-columns:1fr 1fr}}
+@media (max-width:760px){.fit{grid-template-columns:1fr}.backed-inner{grid-template-columns:1fr}.logo-txt{font-size:10px;letter-spacing:.2em}.brandmark{height:26px}}
+
+.li-ico{width:14px;height:14px;flex:none}
+.nav-li{display:inline-flex;align-items:center;gap:8px;color:var(--muted);transition:color .25s}
+.nav-li:hover{color:#fff}
+.li-btn{display:inline-flex;align-items:center;gap:12px;padding:17px 26px;border:1px solid rgba(10,102,194,.7);background:rgba(10,102,194,.14);font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink);transition:background .3s,border-color .3s}
+.li-btn:hover{background:#0a66c2;border-color:#0a66c2}
+.foot-li{display:inline-flex!important;align-items:center;gap:10px}
+.foot-social{margin-top:22px}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Easitex P. Ltd","url":"https://www.easitex.co/","email":"dfusalilchawla@gmail.com","telephone":"+91-9350318639","sameAs":["https://www.linkedin.com/company/70264969/"]}</script>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <a href="#top" class="logo" aria-label="Easitex P. Ltd home"><svg class="brandmark" viewBox="0 0 132 30" role="img" aria-label="Easitex P. Ltd logo"><rect x=".75" y=".75" width="64" height="28.5" fill="#F8E78D" stroke="#111" stroke-width="1.5"/><rect x="66.5" y=".75" width="64.75" height="28.5" fill="#fff" stroke="#111" stroke-width="1.5"/><text x="32.75" y="20.5" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="15" letter-spacing="2" fill="#111">EASI</text><text x="98.9" y="20.5" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="15" letter-spacing="2" fill="#111">TEX</text></svg><span class="logo-txt">P. Ltd</span></a>
+  <nav class="links" id="links">
+    <a href="#intelligence">Intelligence</a>
+    <a href="#onestop">Solutions</a>
+    <a href="#insights">Insights</a>
+    <a href="#company">Company</a>
+    <a href="#investors">Investors</a>
+    <a href="#contact">Contact</a>
+    <a class="nav-li" href="https://www.linkedin.com/company/70264969/" target="_blank" rel="noopener" aria-label="Easitex P. Ltd on LinkedIn"><svg class="li-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg><span>LinkedIn</span></a>
+  </nav>
+  <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <canvas id="cloth" aria-hidden="true"></canvas>
+  <div class="hero-grid"></div>
+  <div class="hero-copy">
+    <h1 class="display rv">The intelligence layer for textiles.</h1>
+    <p class="label tag rv d1">Real data. Real impact.</p>
+    <div class="hero-cta rv d2">
+      <a class="btn" href="#contact">Explore Easitex P. Ltd AI <span class="arr">→</span></a>
+      <a class="link" href="#intelligence">Explore intelligence <span>→</span></a>
+    </div>
+  </div>
+  <div class="callouts" aria-hidden="true">
+    <div class="callout" data-stage="0" style="top:28%">Regulation AI</div>
+    <div class="callout" data-stage="1" style="top:50%">Textile system</div>
+    <div class="callout green" data-stage="2" style="top:72%">Live transformation ↗</div>
+  </div>
+  <div class="hero-foot">
+    <span class="label scroll-cue">Scroll to transform <b>↓</b></span>
+    <span class="label page" id="stageNum">01 / 03</span>
+  </div>
+</section>
+
+
+<!-- BACKED BY -->
+<section class="backed" id="backed">
+  <div class="backed-inner">
+    <div class="yr rv">1989<small>Serving the trade since</small></div>
+    <div>
+      <span class="label accent rv">Backed by DFU Publications</span>
+      <h2 class="rv d1"><b>Easitex P. Ltd</b> is backed by <b>DFU Publications</b> — a B2B textile trade media publication house <em>serving the trade since 1989.</em></h2>
+    </div>
+  </div>
+</section>
+
+<!-- 02 NEW ERA -->
+<section class="block" id="era">
+  <div class="head">
+    <div>
+      <span class="label rv">The transformation / 02</span>
+      <h2 class="display rv d1">The textile industry is entering a <em>new compliance era.</em></h2>
+    </div>
+    <p class="lede rv d2">Regulations are changing faster than traditional compliance workflows can keep up. Easitex P. Ltd turns fragmented regulatory requirements, sustainability data and industry intelligence into clear actions for textile businesses.</p>
+  </div>
+  <div class="cols cols-3">
+    <div class="col rv"><div class="num">01</div><h3>Applicability</h3><p>Know which regulations actually apply to your business.</p></div>
+    <div class="col rv d1"><div class="num">02</div><h3>Intelligence</h3><p>Understand your current compliance position and what is changing.</p></div>
+    <div class="col rv d2"><div class="num">03</div><h3>Action</h3><p>Turn regulatory complexity into a prioritized path forward.</p></div>
+  </div>
+  <div class="after rv"><a class="btn" href="#intelligence">Explore Easitex P. Ltd Intelligence <span class="arr">→</span></a></div>
+</section>
+
+<!-- 03 THREE MOVES -->
+<section class="block" id="intelligence">
+  <div class="head">
+    <div>
+      <span class="label accent rv">What Easitex P. Ltd Intelligence does / 03</span>
+      <h2 class="display rv d1">Three moves, from <em>regulation</em> to action.</h2>
+    </div>
+    <p class="lede rv d2">Easitex P. Ltd Intelligence turns the regulatory landscape into a sequence of better questions — which rules apply, where you stand, and what to do next.</p>
+  </div>
+  <div class="moves">
+    <article class="move rv">
+      <div class="n">i.</div>
+      <h3>Applicability</h3>
+      <p>Map your products, materials and export markets against the rules that govern them.</p>
+      <ul><li>Market &amp; product scoping</li><li>Regulation-to-SKU mapping</li><li>Upcoming obligations</li></ul>
+    </article>
+    <article class="move rv d1">
+      <div class="n">ii.</div>
+      <h3>Intelligence</h3>
+      <p>See your current compliance position with source-backed context on what is changing and why.</p>
+      <ul><li>Gap analysis</li><li>Sustainability &amp; traceability data</li><li>Change tracking with sources</li></ul>
+    </article>
+    <article class="move rv d2">
+      <div class="n">iii.</div>
+      <h3>Action</h3>
+      <p>Get a prioritized plan your team can execute — owners, sequence and deadlines included.</p>
+      <ul><li>Prioritized action plans</li><li>Documentation readiness</li><li>Buyer &amp; auditor reporting</li></ul>
+    </article>
+  </div>
+</section>
+
+
+<!-- ONE-STOP -->
+<section class="block" id="onestop">
+  <div class="head">
+    <div>
+      <span class="label accent rv">One-stop solution</span>
+      <h2 class="display rv d1">One stop. Because <em>one size does not fit all.</em></h2>
+    </div>
+    <p class="lede rv d2">Every textile business carries a different mix of products, markets, buyers and sustainability goals. Easitex P. Ltd brings regulatory, sustainability and trade intelligence under one roof — and tailors it to where you are.</p>
+  </div>
+  <div class="fit">
+    <article class="rv"><span class="tag">Exporters</span><h3>Exporters &amp; manufacturers</h3><p>Market-by-market compliance, buyer requirements and documentation readiness.</p></article>
+    <article class="rv d1"><span class="tag">Brands</span><h3>Brands &amp; retailers</h3><p>Product-level sustainability data, traceability and Digital Product Passport preparation.</p></article>
+    <article class="rv d2"><span class="tag">Mills</span><h3>Mills &amp; processors</h3><p>Chemicals, environmental and process requirements, with a practical path to action.</p></article>
+    <article class="rv d3"><span class="tag">Sourcing</span><h3>Buyers &amp; sourcing teams</h3><p>Supplier readiness and risk signals across the textile value chain.</p></article>
+  </div>
+  <div class="onestop-note rv"><span>Regulatory intelligence</span><span>Sustainability &amp; LCA</span><span>Trade media &amp; insights</span><span>Tailored action plans</span></div>
+</section>
+
+<!-- 04 RADAR -->
+<section class="block" id="radar">
+  <div class="head">
+    <div>
+      <span class="label rv">Regulatory radar / 04</span>
+      <h2 class="display rv d1">Regulation is a moving system, <em>not a static list.</em></h2>
+    </div>
+    <p class="lede rv d2">Easitex P. Ltd is designed to follow the path from regulation to impact to status to action, with source-backed intelligence at every step.</p>
+  </div>
+  <div class="radar-track" id="radarTrack">
+    <div class="progress"></div>
+    <div class="cols cols-4">
+      <div class="col rv"><div class="num">01</div><h3>Regulation</h3><p>What has changed?</p></div>
+      <div class="col rv d1"><div class="num">02</div><h3>Impact</h3><p>Who needs to respond?</p></div>
+      <div class="col rv d2"><div class="num">03</div><h3>Status</h3><p>Where are we now?</p></div>
+      <div class="col rv d3"><div class="num">04</div><h3>Action</h3><p>What happens next?</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 BLUEPRINT -->
+<section class="block" id="blueprint">
+  <div class="head">
+    <div>
+      <span class="label rv">90-day action blueprint / 05</span>
+      <h2 class="display rv d1">Ninety days, <em>three stages.</em></h2>
+    </div>
+    <p class="lede rv d2">A 90-day action blueprint sequences what a business needs to understand, prioritize and act on — one stage at a time.</p>
+  </div>
+  <div class="stages" id="stages">
+    <div class="stage rv">
+      <div class="days"><span>0–30</span><span class="label">Days</span></div>
+      <h3>Understand</h3>
+      <p>Establish which regulations apply and baseline where the business stands today.</p>
+      <ul><li>Applicability assessment</li><li>Data &amp; document inventory</li></ul>
+      <div class="bar"><i style="--w:33%"></i></div>
+    </div>
+    <div class="stage rv d1">
+      <div class="days"><span>31–60</span><span class="label">Days</span></div>
+      <h3>Prioritize</h3>
+      <p>Rank gaps by deadline, buyer exposure and effort, and assign clear owners.</p>
+      <ul><li>Gap prioritization</li><li>Owner &amp; timeline mapping</li></ul>
+      <div class="bar"><i style="--w:66%"></i></div>
+    </div>
+    <div class="stage rv d2">
+      <div class="days"><span>61–90</span><span class="label">Days</span></div>
+      <h3>Act</h3>
+      <p>Execute the plan, close priority gaps and get ready for buyers and auditors.</p>
+      <ul><li>Implementation tracking</li><li>Readiness reporting</li></ul>
+      <div class="bar"><i style="--w:100%"></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 INSIGHTS -->
+<section class="block" id="insights">
+  <div class="head">
+    <div>
+      <span class="label rv">Insights / 06</span>
+      <h2 class="display rv d1">Intelligence, <em>in plain language.</em></h2>
+    </div>
+    <p class="lede rv d2">Research, briefings and explainers on the regulations, technologies and markets shaping textile exports.</p>
+  </div>
+  <div class="insights">
+    <article class="feature rv">
+      <div class="meta"><span>Regulation</span><span>·</span><span>Featured</span></div>
+      <h3><a href="#insights">Digital Product Passports: The Fashion Industry's Next Compliance Frontier</a></h3>
+      <p>The EU's Digital Product Passport will affect every fashion exporter selling into Europe. Here is what it requires, who it applies to, and how to prepare.</p>
+      <a class="link" href="#insights">Read the insight <span>↗</span></a>
+    </article>
+    <div>
+      <article class="post rv d1"><div class="meta"><span>Report</span></div><h3><a href="#insights">2026 State of Sustainable Textiles: Report Takeaways</a></h3></article>
+      <article class="post rv d1"><div class="meta"><span>Webinar</span></div><h3><a href="#insights">Upcoming Webinar: EU Textile Rules Explained for Exporters</a></h3></article>
+      <article class="post rv d2"><div class="meta"><span>Sustainability</span></div><h3><a href="#insights">Life Cycle Assessment for Textile Factories: Where to Start</a></h3></article>
+      <article class="post rv d2"><div class="meta"><span>Technology</span></div><h3><a href="#insights">AI-Based Defect Detection Is Reshaping Textile Quality Control</a></h3></article>
+    </div>
+  </div>
+  <div class="topics rv">
+    <a href="#insights">Technology</a><a href="#insights">Fashion</a><a href="#insights">Textiles</a><a href="#insights">Sustainability</a><a href="#insights">Startups</a><a href="#insights">Circularity</a><a href="#insights">Compliance</a><a href="#insights">Trade</a><a href="#insights">Production</a><a href="https://www.linkedin.com/company/70264969/" target="_blank" rel="noopener" style="border-color:rgba(10,102,194,.6);color:var(--ink)">More insights on LinkedIn ↗</a>
+  </div>
+</section>
+
+<!-- COMPANY / INVESTORS -->
+<section class="block" id="company">
+  <div class="company">
+    <div>
+      <span class="label rv" style="display:block;margin-bottom:22px">Company</span>
+      <h2 class="display rv d1" style="font-size:clamp(34px,4.4vw,64px);margin-bottom:28px">Built for the <em>textile export</em> industry.</h2>
+      <p class="lede rv d2">Easitex P. Ltd is an AI-driven compliance intelligence platform for the textile and fashion export industry, covering sustainability, regulatory and innovation intelligence — so manufacturers and brands can meet new requirements with confidence instead of guesswork.</p>
+    </div>
+    <div class="stats rv d2" id="investors">
+      <div class="stat"><b>Regulatory</b><span>Applicability, change tracking and action plans</span></div>
+      <div class="stat"><b>Sustainability</b><span>Traceability, LCA and product-level data</span></div>
+      <div class="stat"><b>Innovation</b><span>Technology and market intelligence</span></div>
+      <div class="stat"><b>Investors</b><span><a href="mailto:dfusalilchawla@gmail.com?subject=Investor%20enquiry%20-%20Easitex%20P.%20Ltd" style="border-bottom:1px solid var(--line2)">Request the investor brief ↗</a></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 CTA -->
+<section class="cta" id="contact">
+  <span class="label rv">Easitex P. Ltd / 07</span>
+  <h2 class="display rv d1">Turn regulatory complexity into <em>action.</em></h2>
+  <div class="row rv d2">
+    <a class="btn" href="mailto:dfusalilchawla@gmail.com?subject=Easitex%20P.%20Ltd%20enquiry">Explore Easitex P. Ltd Intelligence <span class="arr">→</span></a>
+    <a class="link" href="https://wa.me/919350318639" target="_blank" rel="noopener">Talk to Easitex P. Ltd on WhatsApp <span>↗</span></a>
+    <a class="li-btn" href="https://www.linkedin.com/company/70264969/" target="_blank" rel="noopener"><svg class="li-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg> Follow us on LinkedIn</a>
+  </div>
+  <p class="rv d3" style="position:relative;margin-top:34px;color:var(--muted);font-size:14px;letter-spacing:.04em">Reach Us @ Email — <a href="mailto:dfusalilchawla@gmail.com" style="color:var(--ink);border-bottom:1px solid var(--line2)">dfusalilchawla@gmail.com</a> &nbsp;·&nbsp; WA — <a href="https://wa.me/919350318639" target="_blank" rel="noopener" style="color:var(--ink);border-bottom:1px solid var(--line2)">+91-9350318639</a> &nbsp;·&nbsp; <a href="https://www.linkedin.com/company/70264969/" target="_blank" rel="noopener" style="color:var(--ink);border-bottom:1px solid var(--line2)">LinkedIn</a></p>
+</section>
+
+</main>
+<div class="eco-glow" aria-hidden="true"></div>
+
+<footer>
+  <div class="foot-grid">
+    <div>
+      <a href="#top" class="logo"><svg class="brandmark" viewBox="0 0 132 30" role="img" aria-label="Easitex P. Ltd logo"><rect x=".75" y=".75" width="64" height="28.5" fill="#F8E78D" stroke="#111" stroke-width="1.5"/><rect x="66.5" y=".75" width="64.75" height="28.5" fill="#fff" stroke="#111" stroke-width="1.5"/><text x="32.75" y="20.5" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="15" letter-spacing="2" fill="#111">EASI</text><text x="98.9" y="20.5" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="800" font-size="15" letter-spacing="2" fill="#111">TEX</text></svg><span class="logo-txt">P. Ltd</span></a>
+      <p>Easitex P. Ltd is an AI-driven compliance intelligence platform for the textile and fashion export industry, covering sustainability, regulatory, and innovation intelligence.</p>
+      <div class="foot-social"><a class="li-btn" href="https://www.linkedin.com/company/70264969/" target="_blank" rel="noopener"><svg class="li-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg> Follow on LinkedIn</a></div>
+    </div>
+    <div>
+      <h4>Explore</h4>
+      <ul><li><a href="#insights">Insights</a></li><li><a href="#intelligence">AI</a></li><li><a href="#company">Company</a></li><li><a href="#investors">Investors</a></li></ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p class="reach">Reach Us @</p><ul><li><a href="mailto:dfusalilchawla@gmail.com">Email — dfusalilchawla@gmail.com</a></li><li><a href="https://wa.me/919350318639" target="_blank" rel="noopener">WA — +91-9350318639</a></li><li><a class="foot-li" href="https://www.linkedin.com/company/70264969/" target="_blank" rel="noopener"><svg class="li-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg> LinkedIn — Easitex P. Ltd</a></li></ul>
+    </div>
+  </div>
+  <div class="legal">
+    <span>© <span id="yr">2026</span> Easitex P. Ltd</span>
+    <p>Regulatory information on Easitex P. Ltd is for informational purposes — verify official requirements for your business.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // nav
+  var nav=document.getElementById('nav'),body=document.body,btn=document.getElementById('menuBtn');
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  function onScroll(){nav.classList.toggle('scrolled',window.scrollY>30)}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  btn.addEventListener('click',function(){var o=body.classList.toggle('menu-open');btn.setAttribute('aria-expanded',o)});
+  document.querySelectorAll('#links a').forEach(function(a){a.addEventListener('click',function(){body.classList.remove('menu-open');btn.setAttribute('aria-expanded',false)})});
+
+  // reveal
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.rv,#radarTrack,#stages').forEach(function(el){io.observe(el)});
+
+  // cloth
+  var cv=document.getElementById('cloth'),ctx=cv.getContext('2d'),hero=document.getElementById('hero');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var W,H,dpr,NU=72,NV=52,P=new Float32Array(NU*NV*3),S=new Float32Array(NU*NV*3),R=new Float32Array(NU*NV*3),L=new Float32Array(NU*NV);
+  var callouts=[].slice.call(document.querySelectorAll('.callout')),stageNum=document.getElementById('stageNum');
+  var prog=0,target=0,mx=0,my=0,t0=performance.now(),visible=true;
+  function resize(){dpr=Math.min(window.devicePixelRatio||1,2);var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}
+  window.addEventListener('resize',resize);resize();
+  window.addEventListener('scroll',function(){var r=hero.getBoundingClientRect();target=Math.min(1,Math.max(0,-r.top/(r.height*.6)))},{passive:true});
+  window.addEventListener('pointermove',function(e){mx=e.clientX/window.innerWidth-.5;my=e.clientY/window.innerHeight-.5},{passive:true});
+  new IntersectionObserver(function(es){visible=es[0].isIntersecting}).observe(hero);
+
+  function build(t){
+    var i=0;
+    for(var v=0;v<NV;v++){var fv=v/(NV-1);
+      for(var u=0;u<NU;u++){var fu=u/(NU-1);
+        var x=(fu-.5)*2.3, y=(fv-.5)*1.5;
+        // drape: pinned at top-right corner, falling fabric with folds
+        var hang=Math.pow(fv,1.2);
+        var z=Math.sin(fu*10+t*.9+fv*1.5)*(.10+.34*hang)
+             +Math.sin(fu*5.3-t*.6+fv*4)*.18
+             +Math.cos(fv*7+t*.7+fu*3)*.09*(1-fu*.5)
+             +Math.sin((fu+fv)*17+t*1.3)*.03;
+        y+=Math.sin(fu*3.1+t*.5)*.10*hang - (1-fu)*.45*fv*fv + Math.abs(Math.sin(fu*11+t*.9))*.08*hang;
+        x+=Math.sin(fv*4+t*.4)*.06 - fv*fv*(fu-.5)*.35;
+        P[i++]=x;P[i++]=y;P[i++]=z;
+      }}
+  }
+  function project(t){
+    var ry=-.55+Math.sin(t*.15)*.12+mx*.25+prog*.5, rx=.35+my*.15, rz=-.42;
+    var cy=Math.cos(ry),sy=Math.sin(ry),cx=Math.cos(rx),sx=Math.sin(rx),cz=Math.cos(rz),sz=Math.sin(rz);
+    var mobile=W<760, sc=Math.min(W,H*1.5)*(mobile?.34:.25), ox=W*(mobile?.5:.70), oy=H*.5;
+    for(var i=0;i<P.length;i+=3){
+      var x=P[i],y=P[i+1],z=P[i+2],x1,y1,z1;
+      x1=x*cz-y*sz;y1=x*sz+y*cz;x=x1;y=y1;
+      x1=x*cy+z*sy;z1=-x*sy+z*cy;x=x1;z=z1;
+      y1=y*cx-z*sx;z1=y*sx+z*cx;y=y1;z=z1;
+      R[i]=x;R[i+1]=y;R[i+2]=z;var f=3.2/(3.2+z);S[i]=ox+x*sc*f;S[i+1]=oy+y*sc*f;S[i+2]=z;
+    }
+  }
+  var quads=[];for(var v=0;v<NV-1;v++)for(var u=0;u<NU-1;u++)quads.push(v*NU+u);
+  var order=new Array(quads.length),depth=new Float32Array(quads.length);
+  function draw(now){
+    var t=reduce?4:(now-t0)/1000;
+    prog+=(target-prog)*.08;
+    build(t);project(t);
+    ctx.clearRect(0,0,W,H);
+    var solid=Math.max(0,1-prog*2.2), pts=Math.min(1,prog*2.5)*(1-Math.max(0,prog-.7)*1.2), green=Math.max(0,(prog-.45)/.55);
+    // solid
+    if(solid>0.01){
+      for(var q=0;q<quads.length;q++){var a=quads[q]*3;depth[q]=S[a+2]+S[a+5]+S[a+NU*3+2];order[q]=q}
+      order.sort(function(a,b){return depth[b]-depth[a]});
+      for(var vv=0;vv<NV;vv++)for(var uu=0;uu<NU;uu++){
+        var id=vv*NU+uu,i0=(vv*NU+Math.max(0,uu-1))*3,i1=(vv*NU+Math.min(NU-1,uu+1))*3,j0=(Math.max(0,vv-1)*NU+uu)*3,j1=(Math.min(NV-1,vv+1)*NU+uu)*3;
+        var ax=R[i1]-R[i0],ay=R[i1+1]-R[i0+1],az=R[i1+2]-R[i0+2],bx=R[j1]-R[j0],by=R[j1+1]-R[j0+1],bz=R[j1+2]-R[j0+2];
+        var nx=ay*bz-az*by,ny=az*bx-ax*bz,nz=ax*by-ay*bx,nl=Math.hypot(nx,ny,nz)||1;nx/=nl;ny/=nl;nz/=nl;
+        if(nz>0){nx=-nx;ny=-ny;nz=-nz}
+        var dd=Math.max(0,nx*-.82+ny*-.28+nz*-.5), rim=Math.pow(1-Math.abs(nz),3);
+        L[id]=Math.pow(dd,2.2)*118+rim*12;
+      }
+      ctx.globalAlpha=solid;
+      for(var k=0;k<order.length;k++){
+        var idx=quads[order[k]],a=idx*3,b=a+3,c=a+NU*3+3,d=a+NU*3;
+        var g=Math.round(9+(L[idx]+L[idx+1]+L[idx+NU]+L[idx+NU+1])/4), gr=Math.round(g*(1+green*.25));
+        ctx.fillStyle='rgb('+g+','+gr+','+g+')';ctx.strokeStyle=ctx.fillStyle;ctx.lineWidth=.8;
+        ctx.beginPath();ctx.moveTo(S[a],S[a+1]);ctx.lineTo(S[b],S[b+1]);ctx.lineTo(S[c],S[c+1]);ctx.lineTo(S[d],S[d+1]);ctx.closePath();ctx.fill();ctx.stroke();
+      }
+    }
+    // points + mesh lines
+    if(pts>0.01||green>0.01){
+      var r=Math.round(170-green*43),gg=Math.round(175+green*6),bb=Math.round(170-green*27);
+      if(green>0.01){
+        ctx.globalAlpha=green*.35;ctx.strokeStyle='rgb(127,181,143)';ctx.lineWidth=.5;ctx.beginPath();
+        for(var v2=0;v2<NV;v2+=3)for(var u2=0;u2<NU-1;u2++){var a2=(v2*NU+u2)*3;ctx.moveTo(S[a2],S[a2+1]);ctx.lineTo(S[a2+3],S[a2+4])}
+        for(var u3=0;u3<NU;u3+=4)for(var v3=0;v3<NV-1;v3++){var a3=(v3*NU+u3)*3;ctx.moveTo(S[a3],S[a3+1]);ctx.lineTo(S[a3+NU*3],S[a3+NU*3+1])}
+        ctx.stroke();
+      }
+      ctx.globalAlpha=Math.max(pts,green*.8);ctx.fillStyle='rgb('+r+','+gg+','+bb+')';
+      for(var i=0;i<S.length;i+=6){var s=1.1+(1-S[i+2])*.6;ctx.fillRect(S[i]-s/2,S[i+1]-s/2,s,s)}
+    }
+    ctx.globalAlpha=1;
+    var st=prog<.25?0:prog<.6?1:2;
+    callouts.forEach(function(c){c.classList.toggle('on',+c.dataset.stage===st)});
+    stageNum.textContent='0'+(st+1)+' / 03';
+  }
+  function loop(now){if(visible)draw(now);if(!reduce)requestAnimationFrame(loop)}
+  if(reduce){draw(0);window.addEventListener('scroll',function(){requestAnimationFrame(draw)},{passive:true})}else requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
